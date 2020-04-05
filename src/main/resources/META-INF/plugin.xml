@@ -1,0 +1,79 @@
+<idea-plugin>
+    <id>org.example.codeigniter3-plugin</id>
+    <name>Codeigniter 3</name>
+    <vendor email="mudi.adamz@gmail.com" url="http://www.techgalery.com">adam</vendor>
+
+    <description><![CDATA[
+    This plugin works for Codeigniter 3<br>
+    <em>it's old framework but capable of develop webapp faster</em>
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.jetbrains.php</depends>
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+
+
+        <inspectionToolProvider
+                implementation="lt.martynassateika.idea.codeigniter.inspection.CiInspectionToolProvider"/>
+        <completion.contributor language="PHP"
+                                implementationClass="lt.martynassateika.idea.codeigniter.contributor.MyCompletionContributor"/>
+
+        <!-- Configuration -->
+        <fileBasedIndex
+                implementation="lt.martynassateika.idea.codeigniter.config.ConfigFileIndex"/>
+        <psi.referenceContributor language="PHP"
+                                  implementation="lt.martynassateika.idea.codeigniter.config.ConfigReferenceContributor"/>
+
+        <!-- Helpers -->
+        <psi.referenceContributor
+                implementation="lt.martynassateika.idea.codeigniter.helper.HelperReferenceContributor"/>
+
+        <!-- Language helper -->
+        <fileBasedIndex
+                implementation="lt.martynassateika.idea.codeigniter.language.LanguageFileIndex"/>
+        <psi.referenceContributor language="PHP"
+                                  implementation="lt.martynassateika.idea.codeigniter.language.LanguageReferenceContributor"/>
+        <lang.foldingBuilder language="PHP"
+                             implementationClass="lt.martynassateika.idea.codeigniter.language.LanguageFoldingBuilder"/>
+
+        <!-- Models -->
+        <psi.referenceContributor language="PHP"
+                                  implementation="lt.martynassateika.idea.codeigniter.model.ModelReferenceContributor"/>
+
+        <!-- Views -->
+        <psi.referenceContributor
+                implementation="lt.martynassateika.idea.codeigniter.view.ViewReferenceContributor"/>
+
+        <projectConfigurable id="CodeIgniter.SettingsConfigurable"
+                             instance="lt.martynassateika.idea.codeigniter.ui.CodeIgniterSettingsConfigurable"
+                             displayName="CodeIgniter"
+                             parentId="reference.webide.settings.project.settings.php"
+                             nonDefaultProject="true"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <group id="Example.SampleMenu" text="Greeting" description="Greeting menu">
+            <action id="Example.Textboxes" class="HelloAction" text="Hello" description="Says hello"/>
+            <add-to-group group-id="MainMenu" anchor="last"/>
+            <separator/>
+        </group>
+    </actions>
+
+
+    <project-components>
+        <component>
+            <implementation-class>lt.martynassateika.idea.codeigniter.CodeIgniterProjectSettings
+            </implementation-class>
+        </component>
+        <component>
+            <implementation-class>lt.martynassateika.idea.codeigniter.CodeIgniterProjectComponent
+            </implementation-class>
+        </component>
+    </project-components>
+
+</idea-plugin>

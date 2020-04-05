@@ -1,0 +1,1 @@
+Just a starter for developing Intellij based IDE. This starter codes is an example for creating plugin for PHPStorm. I experiences difficulties for just starting on developing plugin, the first time i tried it, it's quite painful experiences, i hope with this starter you can just grab this codes and start develop your plugin.
